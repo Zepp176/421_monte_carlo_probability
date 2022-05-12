@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
     
 def play_421(speak=False):
     de = [False, False, False]
@@ -36,10 +37,23 @@ def play_421(speak=False):
             
 
 count = 0
-n_iter = 1000000
+n_iter = 100000
+result = np.empty(n_iter)
 
+result[0] = play_421()
+
+for i in range(1, n_iter):
+    result[i] = result[i-1] + play_421()
 for i in range(n_iter):
-    count += play_421()
+    result[i] /= (i+1)
 
 print("{} iterations.".format(n_iter))
 print("probability to win \"421\": {}%".format(count/n_iter*100))
+
+plt.figure(figsize=(7,5))
+plt.grid()
+plt.title("probability to win 421 game")
+plt.xlabel("iteration")
+plt.ylabel("probability of win [%]")
+plt.plot(result*100)
+plt.show()
