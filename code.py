@@ -41,4 +41,5 @@ n_iter = 1000000
 for i in range(n_iter):
     count += play_421()
 
+print("{} iterations.".format(n_iter))
 print("probability to win \"421\": {}%".format(count/n_iter*100))
